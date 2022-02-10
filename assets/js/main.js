@@ -89,13 +89,25 @@ var getWeather = function (lat, lon, name) {
     })
 }
 
-var renderTodaysWeather = function(weatherData, city) {
+var renderTodaysWeather = function (weatherData, city) {
     console.log(weatherData)
 
     todaysWeatherDivEl.textContent = ''
 
+    // add today's date
+    var unixTime = weatherData.daily[0].dt * 1000
+    var time = new Date(unixTime).toLocaleDateString('en-US')
+    var dateEl = document.createElement('span')
+    dateEl.textContent = ` (${time}) `
+
+    // add icon
+    var icon = weatherData.daily[0].weather[0].icon
+    var iconEl = document.createElement('img')
+    iconEl.src = `http://openweathermap.org/img/wn/${icon}.png`
+
     var cityEl = document.createElement('h3')
     cityEl.textContent = city
+    cityEl.append(dateEl, iconEl)
     todaysWeatherDivEl.append(cityEl)
 
     var temp = weatherData.daily[0].temp.day
@@ -125,12 +137,12 @@ var renderTodaysWeather = function(weatherData, city) {
     } else {
         uviSpanEl.classList.add('bg-danger')
     }
-    
+
 
     var uviEl = document.createElement('p')
     uviEl.textContent = `UV Index: `
     uviEl.append(uviSpanEl)
-    
+
     todaysWeatherDivEl.append(uviEl)
 }
 
@@ -159,7 +171,7 @@ var renderHistoryBtn = function (cityList) {
     }
 }
 
-var getHistory = function(event) {
+var getHistory = function (event) {
     var city = event.target.dataset.cityName
     getCityInfo(city)
 }
