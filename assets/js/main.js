@@ -33,11 +33,15 @@ var loadCities = function () {
     var getFromLocalStorage = localStorage.getItem('savedCities')
     if (getFromLocalStorage) {
         cityList = JSON.parse(getFromLocalStorage)
+        getCityInfo(cityList[0].city)
+    } else {
+        getCityInfo('New York')
     }
 }
 
 var formSubmitHandler = function (event) {
     event.preventDefault()
+
     var cityInput = cityInputEl.value.trim()
     getCityInfo(cityInput)
 }
