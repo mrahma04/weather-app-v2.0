@@ -43,6 +43,7 @@ var formSubmitHandler = function (event) {
     event.preventDefault()
 
     var cityInput = cityInputEl.value.trim()
+    cityInputEl.value = ''
     getCityInfo(cityInput)
 }
 
