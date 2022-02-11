@@ -1,5 +1,9 @@
 # weather-app-v2.0
 
+### This is a Web App that pulls the current day's and the next 5-day forecast for a given City. It also saves a list of the recently searched cities.
+
+https://mrahma04.github.io/weather-app-v2.0/
+
 ## User Story
 
 ```
